@@ -1,0 +1,26 @@
+{
+  "name": "npm-today",
+  "description": "Get a list of recently updated npm modules.",
+  "version": "1.0.0",
+  "author": "Peter deHaan <peter@deseloper.com> (https://about.me/peterdehaan)",
+  "bugs": {
+    "url": "https://github.com/pdehaan/npm-today/issues"
+  },
+  "dependencies": {
+    "node-fetch": "^1.6.0"
+  },
+  "devDependencies": {
+    "nsp-check-remote": "github:pdehaan/nsp-check-remote"
+  },
+  "homepage": "https://github.com/pdehaan/npm-today#readme",
+  "keywords": [],
+  "license": "WTFPL",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdehaan/npm-today.git"
+  },
+  "scripts": {
+    "test": "node test"
+  }
+}
