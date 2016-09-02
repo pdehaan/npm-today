@@ -6,6 +6,8 @@ Get a list of recently updated npm modules so you can see what's "fresh".
 
 ## Installation:
 
+This module isn't published to npm, so you'll need to install it directly from GitHub:
+
 ```sh
 $ npm i pdehaan/npm-today -S
 ```
@@ -29,22 +31,14 @@ const { checkLatest } = require('nsp-check-remote');
 const { getRecentlyUpdated } = require('npm-today');
 
 getRecentlyUpdated()
-  // Only process the first 10 packages to avoid flooding nsp with requests.
   .then((packages) => packages.slice(0, 10))
-  .then((packages) => {
-    return packages.map((pkg) => {
-      return checkLatest(pkg.name, 'summary')
-        .then(({data, err, output, package}) => {
-          // Inject nsp response into package.json packet.
-          package._nsp = {
-            err,
-            data,
-            output
-          };
-          return package;
-        });
-    })
-  })
+  .then((packages) => packages.map(({name}) => {
+    return checkLatest(name, 'summary')
+      .then(({data, err, output, package}) => {
+        // Inject nsp response into package.json response.
+        return Object.assign(package, {_nsp: {err, data, output}});
+      });
+  }))
   .then((promises) => Promise.all(promises))
   .then((res) => console.log(JSON.stringify(res, null, 2)))
   .catch((err) => console.error(err));
@@ -54,7 +48,7 @@ getRecentlyUpdated()
 
 Here's a sample of some random output (with a few 'boring' package.json fields manually removed):
 
-```json
+```js
 [
   {
     "created": "2016-07-10T04:59:31.595Z",
