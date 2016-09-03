@@ -1,12 +1,13 @@
 {
   "name": "npm-today",
   "description": "Fetch a list of recently modified npm modules.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Peter deHaan <peter@deseloper.com> (https://about.me/peterdehaan)",
   "bugs": {
     "url": "https://github.com/pdehaan/npm-today/issues"
   },
   "dependencies": {
+    "nice-package": "^1.2.0",
     "node-fetch": "^1.6.0"
   },
   "devDependencies": {
